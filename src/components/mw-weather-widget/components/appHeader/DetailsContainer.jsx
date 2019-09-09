@@ -13,9 +13,9 @@ const WigetHeaderWrapper = styled.header`
 `;
 
 const DetailsConatiner = () => {
-  const { selectedHourData } = React.useContext(WeatherContext);
-  console.log(selectedHourData);
-  const { description, temp, tmax, tmin } = selectedHourData;
+  const {
+    selectedHourData: { description, temp, tmax, tmin }
+  } = React.useContext(WeatherContext);
 
   const temp_max = kToC(tmax);
   const temp_min = kToC(tmin);

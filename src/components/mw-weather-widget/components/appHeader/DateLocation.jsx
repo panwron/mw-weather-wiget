@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import styled from "styled-components";
 
 const Section = styled.div`
@@ -29,6 +31,12 @@ const DateLocation = ({ city, formatedDate, day }) => {
       <Date>{formatedDate}</Date>
     </Section>
   );
+};
+
+DateLocation.propTypes = {
+  city: PropTypes.string.isRequired,
+  formatedDate: PropTypes.string.isRequired,
+  day: PropTypes.string.isRequired
 };
 
 export default DateLocation;
