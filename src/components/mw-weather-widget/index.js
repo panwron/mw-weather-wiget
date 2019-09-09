@@ -1,3 +1,4 @@
 import React from "react";
+import WeatherApp from "./components/App";
 
-export default () => <h1>weatherApp</h1>;
+export default () => <WeatherApp />;
