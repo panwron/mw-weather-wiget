@@ -15,7 +15,7 @@ class WeatherApp extends Component {
       units: "C",
       weatherData: null,
       activeHourIndex: null,
-      weatherHoursData: null,
+      weatherByHour: null,
       error: false
     };
   }
@@ -23,43 +23,40 @@ class WeatherApp extends Component {
   componentDidMount() {
     const fetchData = async () => {
       const data = await fetchWeatherData();
-      console.log(data);
       const appData = openweatherAdapter(data);
+
+      if (!appData) {
+        this.setState({ error: true });
+        return;
+      }
+
       console.log(appData);
 
-      this.setState(
-        {
-          weatherData: data,
-          activeHourIndex: new Date().getHours(),
-          weatherHoursData: data.weatherByHour,
-          loading: false
-        },
-        () => {
-          console.log("### init with data ###");
-        }
-      );
+      this.setState({
+        weatherData: appData,
+        weatherByHour: appData.weatherByHour,
+        activeHourIndex: new Date().getHours(),
+        loading: false
+      });
     };
 
-    fetchData().catch(e => {
-      console.log(e);
-      this.setState({ error: true });
-      return null;
-    });
+    fetchData();
   }
 
   render() {
-    const {
-      weatherData,
-      activeHourIndex,
-      weatherHoursData,
-      loading
-    } = this.state;
+    const { weatherData, activeHourIndex, weatherByHour } = this.state;
     if (this.state.loading) return null;
     if (this.state.error)
       return "weather data in not avaliable, please try again later";
 
     return (
-      <WeatherProvider value={{ weatherData, activeHourIndex }}>
+      <WeatherProvider
+        value={{
+          weatherData,
+          activeHourIndex,
+          selectedHourData: weatherByHour[activeHourIndex]
+        }}
+      >
         <AppStyleWrapper>
           <AppHeader />
         </AppStyleWrapper>
