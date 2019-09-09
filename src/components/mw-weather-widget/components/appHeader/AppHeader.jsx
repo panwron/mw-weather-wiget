@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import Details from "./Details";
+import { format } from "date-fns";
+
 import DateLocation from "./DateLocation";
 import Icon from "./Icon";
+import DetailsConatiner from "./DetailsContainer";
+import WeatherContext from "../../store/weather-context";
 
 const Header = styled.header`
   display: flex;
@@ -12,11 +15,19 @@ const Header = styled.header`
 `;
 
 const AppHeader = () => {
+  const {
+    weatherData: { city },
+    selectedHourData: { date }
+  } = React.useContext(WeatherContext);
+
+  const day = format(new Date(date), "EEEE");
+  const formatedDate = format(new Date(date), "d. LLLL");
+
   return (
     <Header>
       <Icon />
-      <Details />
-      <DateLocation />
+      <DetailsConatiner />
+      <DateLocation city={city} day={day} formatedDate={formatedDate} />
     </Header>
   );
 };
