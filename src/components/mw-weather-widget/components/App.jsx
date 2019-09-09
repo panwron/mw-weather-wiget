@@ -54,7 +54,7 @@ class WeatherApp extends Component {
       weatherByHour,
       scrollOnClick
     } = this.state;
-    if (this.state.loading) return null;
+    if (this.state.loading) return "...";
     if (this.state.error)
       return "weather data in not avaliable, please try again later";
 
