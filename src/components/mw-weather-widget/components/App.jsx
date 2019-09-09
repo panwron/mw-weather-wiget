@@ -6,6 +6,7 @@ import {
 import { WeatherProvider } from "../store/weather-context";
 import AppHeader from "./appHeader/AppHeader";
 import AppStyleWrapper from "./styleWrappers/AppStyleGlobals";
+import AppSlider from "./appSlider/AppSlider";
 
 class WeatherApp extends Component {
   constructor(props) {
@@ -29,8 +30,6 @@ class WeatherApp extends Component {
         this.setState({ error: true });
         return;
       }
-
-      console.log(appData);
 
       this.setState({
         weatherData: appData,
@@ -59,6 +58,7 @@ class WeatherApp extends Component {
       >
         <AppStyleWrapper>
           <AppHeader />
+          <AppSlider weatherByHour={weatherByHour} />
         </AppStyleWrapper>
       </WeatherProvider>
     );
