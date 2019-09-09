@@ -1,8 +1,10 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import {
   fetchWeatherData,
   openweatherAdapter
 } from "../services/open-weather-map-api";
+import { WeatherProvider } from "../store/weather-context";
+import AppHeader from "./appHeader/AppHeader";
 
 class WeatherApp extends Component {
   constructor(props) {
@@ -36,7 +38,19 @@ class WeatherApp extends Component {
   }
 
   render() {
-    return "mw";
+    const {
+      weatherData,
+      activeHourIndex,
+      weatherHoursData,
+      loading
+    } = this.state;
+    if (this.state.loading) return null;
+
+    return (
+      <WeatherProvider value={{ weatherData, activeHourIndex }}>
+        <AppHeader />
+      </WeatherProvider>
+    );
   }
 }
 
