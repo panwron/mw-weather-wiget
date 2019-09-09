@@ -2,7 +2,7 @@ import React from "react";
 import { format } from "date-fns";
 import Tile from "./Tile";
 import { Sun } from "../shared/WeatherIcons";
-import { kToC } from "../../../utils/units";
+import { kToC } from "../../utils/units";
 import WeatherContext from "../../store/weather-context";
 
 const SliderTile = ({

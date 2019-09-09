@@ -6,7 +6,7 @@ import DateLocation from "./DateLocation";
 import Icon from "./Icon";
 import DetailsConatiner from "./DetailsContainer";
 import WeatherContext from "../../store/weather-context";
-import { ratio } from "../../../utils/sizing";
+import { ratio } from "../../utils/sizing";
 
 const Header = styled.header`
   display: flex;

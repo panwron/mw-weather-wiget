@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import WeatherContext from "../../store/weather-context";
-import { kToC } from "../../../utils/units";
+import { kToC } from "../../utils/units";
 import Details from "./Details";
 
 const WigetHeaderWrapper = styled.header`
