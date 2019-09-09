@@ -5,6 +5,7 @@ import {
 } from "../services/open-weather-map-api";
 import { WeatherProvider } from "../store/weather-context";
 import AppHeader from "./appHeader/AppHeader";
+import AppStyleWrapper from "./styleWrappers/AppStyleGlobals";
 
 class WeatherApp extends Component {
   constructor(props) {
@@ -14,27 +15,36 @@ class WeatherApp extends Component {
       units: "C",
       weatherData: null,
       activeHourIndex: null,
-      weatherHoursData: null
+      weatherHoursData: null,
+      error: false
     };
   }
 
-  async componentDidMount() {
-    const data = await fetchWeatherData();
-    console.log(data);
-    const appData = openweatherAdapter(data);
-    console.log(appData);
+  componentDidMount() {
+    const fetchData = async () => {
+      const data = await fetchWeatherData();
+      console.log(data);
+      const appData = openweatherAdapter(data);
+      console.log(appData);
 
-    this.setState(
-      {
-        weatherData: data,
-        activeHourIndex: new Date().getHours(),
-        weatherHoursData: data.weatherByHour,
-        loading: false
-      },
-      () => {
-        console.log("### init with data ###");
-      }
-    );
+      this.setState(
+        {
+          weatherData: data,
+          activeHourIndex: new Date().getHours(),
+          weatherHoursData: data.weatherByHour,
+          loading: false
+        },
+        () => {
+          console.log("### init with data ###");
+        }
+      );
+    };
+
+    fetchData().catch(e => {
+      console.log(e);
+      this.setState({ error: true });
+      return null;
+    });
   }
 
   render() {
@@ -45,10 +55,14 @@ class WeatherApp extends Component {
       loading
     } = this.state;
     if (this.state.loading) return null;
+    if (this.state.error)
+      return "weather data in not avaliable, please try again later";
 
     return (
       <WeatherProvider value={{ weatherData, activeHourIndex }}>
-        <AppHeader />
+        <AppStyleWrapper>
+          <AppHeader />
+        </AppStyleWrapper>
       </WeatherProvider>
     );
   }
