@@ -17,6 +17,7 @@ class WeatherApp extends Component {
       weatherData: null,
       activeHourIndex: null,
       weatherByHour: null,
+      scrollOnClick: true,
       error: false
     };
   }
@@ -42,8 +43,17 @@ class WeatherApp extends Component {
     fetchData();
   }
 
+  onSelectedHour = hour => {
+    this.setState({ scrollOnClick: false, activeHourIndex: hour });
+  };
+
   render() {
-    const { weatherData, activeHourIndex, weatherByHour } = this.state;
+    const {
+      weatherData,
+      activeHourIndex,
+      weatherByHour,
+      scrollOnClick
+    } = this.state;
     if (this.state.loading) return null;
     if (this.state.error)
       return "weather data in not avaliable, please try again later";
@@ -53,12 +63,16 @@ class WeatherApp extends Component {
         value={{
           weatherData,
           activeHourIndex,
-          selectedHourData: weatherByHour[activeHourIndex]
+          selectedHourData: weatherByHour[activeHourIndex],
+          onSelectedHour: this.onSelectedHour
         }}
       >
         <AppStyleWrapper>
           <AppHeader />
-          <AppSlider weatherByHour={weatherByHour} />
+          <AppSlider
+            weatherByHour={weatherByHour}
+            scrollOnClick={scrollOnClick}
+          />
         </AppStyleWrapper>
       </WeatherProvider>
     );

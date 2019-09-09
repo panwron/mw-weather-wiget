@@ -4,28 +4,31 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Section = styled.div`
-  width: 30%;
+  width: 35%;
+  font-size: ${props => ((props.appWidth * 47.78) / 1920) * 0.1}em;
 `;
 
 const City = styled.p`
-  font-size: 0.8em;
+  font-size: 0.85em;
   margin: 0;
-  color: #ccc;
+  color: #a8aabd;
 `;
 
 const Day = styled.div`
-  font-size: 2.5em;
+  font-size: 1.77em;
   margin: 0.2em 0;
+  font-weight: bold;
 `;
 
 const Date = styled.div`
-  font-size: 2.5em;
+  font-size: 1.77em;
   margin: 0.2em 0;
+  font-weight: bold;
 `;
 
-const DateLocation = ({ city, formatedDate, day }) => {
+const DateLocation = ({ city, formatedDate, day, appWidth }) => {
   return (
-    <Section>
+    <Section appWidth={appWidth}>
       <City>{city}</City>
       <Day>{day}</Day>
       <Date>{formatedDate}</Date>

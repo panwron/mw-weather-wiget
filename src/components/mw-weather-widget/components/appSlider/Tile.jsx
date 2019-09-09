@@ -15,10 +15,13 @@ const TileInner = styled.div`
   border-radius: 4px;
   background-color: ${props =>
     props.active ? "rgba(255, 255, 255, 0.091)" : "rgba(255, 255, 255, 0)"};
-  transition: 0.5s;
+  transition: background-color 0.5s;
   cursor: pointer;
   &:hover {
-    background-color: rgba(255, 255, 255, 0.04);
+    background-color: ${props =>
+      props.active
+        ? "rgba(255, 255, 255, 0.091)"
+        : "rgba(255, 255, 255, 0.021)"};
   }
 `;
 
@@ -35,13 +38,25 @@ const Temp = styled.p`
   font-weight: 600;
 `;
 
-const Tile = ({ hour, temp, active, onClick, id, width, scrollToHour }) => {
+const Tile = ({
+  hour,
+  temp,
+  active,
+  onClick,
+  id,
+  width,
+  scrollToHour,
+  scrollOnClick
+}) => {
   const TileRef = React.createRef();
 
   useEffect(() => {
-    if (TileRef.current) {
-      scrollToHour(TileRef.current.offsetLeft);
-    }
+    const scrollOnMount = () => {
+      if (TileRef.current && active && scrollOnClick) {
+        scrollToHour(TileRef.current.offsetLeft);
+      }
+    };
+    scrollOnMount();
   });
 
   return (

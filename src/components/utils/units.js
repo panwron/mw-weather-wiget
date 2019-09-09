@@ -1,3 +1,3 @@
 // kelvin to celsius
-export const kToC = (val, showUnit = true) =>
-  `${(val - 273.15).toFixed(1)}\xB0${showUnit ? "C" : ""}`;
+export const kToC = (val, showUnit = true, decimals = 1) =>
+  `${(val - 273.15).toFixed(decimals)}\xB0${showUnit ? "C" : ""}`;

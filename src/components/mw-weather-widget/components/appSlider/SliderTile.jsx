@@ -5,7 +5,14 @@ import { Sun } from "../shared/WeatherIcons";
 import { kToC } from "../../../utils/units";
 import WeatherContext from "../../store/weather-context";
 
-const SliderTile = ({ hour, date, temp, sliderWidth, scrollToHour }) => {
+const SliderTile = ({
+  hour,
+  date,
+  temp,
+  sliderWidth,
+  scrollToHour,
+  scrollOnClick
+}) => {
   const { onSelectedHour, activeHourIndex } = React.useContext(WeatherContext);
 
   const isCurrentHour = new Date(date).getHours() === activeHourIndex;
@@ -24,6 +31,7 @@ const SliderTile = ({ hour, date, temp, sliderWidth, scrollToHour }) => {
       ico={displayIco}
       temp={displayTemp}
       scrollToHour={scrollToHour}
+      scrollOnClick={scrollOnClick}
       width={sliderWidth}
     />
   );

@@ -1,25 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import WeatherContext from "../../store/weather-context";
 import { kToC } from "../../../utils/units";
 import Details from "./Details";
+import { ratio } from "../../../utils/sizing";
 
 const WigetHeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 1.5em;
 `;
 
-const DetailsConatiner = () => {
+const DetailsConatiner = ({ appWidth }) => {
   const {
     selectedHourData: { description, temp, tmax, tmin }
   } = React.useContext(WeatherContext);
 
-  const temp_max = kToC(tmax);
-  const temp_min = kToC(tmin);
-  const temperature = kToC(temp);
+  const temp_max = kToC(tmax, true, 0);
+  const temp_min = kToC(tmin, true, 0);
+  const temperature = kToC(temp, false, 0);
 
   return (
     <WigetHeaderWrapper>
@@ -28,6 +28,7 @@ const DetailsConatiner = () => {
         temp_max={temp_max}
         temp_min={temp_min}
         temp={temperature}
+        appWidth={appWidth}
       />
     </WigetHeaderWrapper>
   );

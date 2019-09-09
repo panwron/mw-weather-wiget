@@ -19,7 +19,7 @@ const SliderWrapper = styled.div`
   }
 `;
 
-const AppSlider = ({ weatherByHour }) => {
+const AppSlider = ({ weatherByHour, scrollOnClick }) => {
   const [sliderWidth, setSliderWidth] = React.useState(0);
   const [sliderHeight, setSliderHeight] = React.useState(0);
 
@@ -57,6 +57,7 @@ const AppSlider = ({ weatherByHour }) => {
             sliderWidth={sliderWidth}
             key={i}
             scrollToHour={scrollToHour}
+            scrollOnClick={scrollOnClick}
             {...hour}
           />
         ))}

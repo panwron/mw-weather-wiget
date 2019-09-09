@@ -5,7 +5,7 @@ import { Sun } from "../shared/WeatherIcons";
 const HeaderIco = styled.div`
   width: 30%;
   text-align: center;
-  max-width: 80px;
+  max-width: 328px;
 `;
 
 export default ({ icon = <Sun /> }) => <HeaderIco>{icon}</HeaderIco>;
