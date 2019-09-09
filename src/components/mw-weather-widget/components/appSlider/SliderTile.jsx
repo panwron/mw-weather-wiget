@@ -18,7 +18,7 @@ const SliderTile = ({
   const isCurrentHour = new Date(date).getHours() === activeHourIndex;
   const displayHour = format(new Date(date), "HH:mm");
   const displayIco = <Sun />;
-  const displayTemp = kToC(temp, false);
+  const displayTemp = kToC(temp, false, 0);
   const handleOnClick = () => {
     onSelectedHour(hour);
   };

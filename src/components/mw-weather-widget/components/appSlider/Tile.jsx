@@ -4,15 +4,16 @@ import styled from "styled-components";
 import { Sun } from "../shared/WeatherIcons";
 
 const TileInner = styled.div`
+  font-size: ${props => props.width * 0.002}em;
   min-width: ${props => props.width / 8}px;
   max-width: ${props => props.width / 8}px;
-  padding: 10px;
+  padding: 0 1.03em;
   text-align: center;
   color: #fff;
   background: none;
   -webkit-appearance: none;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: ${props =>
     props.active ? "rgba(255, 255, 255, 0.091)" : "rgba(255, 255, 255, 0)"};
   transition: background-color 0.5s;
@@ -27,15 +28,23 @@ const TileInner = styled.div`
 
 const Hour = styled.p`
   margin: 0;
-  font-size: ${props => props.width * 0.004}em;
+  /* font-size: ${props => props.width * 0.002}em; */
+  font-size: 1.05em;
+  color: #a8aabd;
+  padding: 0.75em 0;
 `;
 
-const Ico = styled.div``;
+const Ico = styled.div`
+  svg {
+    max-width: 120px;
+  }
+`;
 
 const Temp = styled.p`
   margin: 0;
-  font-size: ${props => props.width * 0.004}em;
+  font-size: 1.82em;
   font-weight: 600;
+  padding: 0.4em 0;
 `;
 
 const Tile = ({
@@ -66,11 +75,11 @@ const Tile = ({
       ref={active ? TileRef : null}
       active={active}
     >
-      <Hour width={width}>{hour}</Hour>
+      <Hour>{hour}</Hour>
       <Ico>
         <Sun />
       </Ico>
-      <Temp width={width}>{temp}</Temp>
+      <Temp>{temp}</Temp>
     </TileInner>
   );
 };

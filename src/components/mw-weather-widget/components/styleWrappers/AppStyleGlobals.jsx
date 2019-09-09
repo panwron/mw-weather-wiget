@@ -17,8 +17,11 @@ const AppStyleWrapper = styled.div`
   box-sizing: border-box;
   color: #fff;
   margin: auto;
-  padding-bottom: 20px;
   background-color: rgb(36, 43, 88);
+  padding-bottom: 6%;
+  * {
+    box-sizing: border-box;
+  }
 `;
 
 export default props => (

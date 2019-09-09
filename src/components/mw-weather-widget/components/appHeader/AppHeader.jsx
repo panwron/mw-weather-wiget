@@ -21,11 +21,20 @@ const AppHeader = () => {
   const headerRef = React.createRef();
 
   useEffect(() => {
-    if (headerRef.current) {
-      console.log(headerRef.current.offsetWidth);
-      setAppWidth(headerRef.current.offsetWidth);
-    }
-  }, [appWidth, headerRef]);
+    setAppWidth(headerRef.current.offsetWidth);
+    const handleResize = () => {
+      let resizeTimer;
+
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        headerRef.current && setAppWidth(headerRef.current.offsetWidth);
+      }, 400);
+    };
+    window.addEventListener("resize", handleResize, true);
+    return () => {
+      window.removeEventListener("resize", handleResize, true);
+    };
+  }, [setAppWidth, headerRef]);
 
   const {
     weatherData: { city },

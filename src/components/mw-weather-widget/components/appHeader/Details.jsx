@@ -5,10 +5,15 @@ import styled from "styled-components";
 const HeaderDetails = styled.div`
   font-size: ${props => ((props.appWidth * 47.78) / 1920) * 0.1}em;
   width: 100%;
+`;
+
+const DetailsTop = styled.div`
+  flex-grow: 2;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0 1.5em;
+  padding: 0;
+  position: relative;
 `;
 
 const Description = styled.div`
@@ -27,11 +32,12 @@ const MinMax = styled.div`
 
 const Temperature = styled.div`
   width: 100%;
-  font-size: 4.4em;
-  padding: 0 0.1em;
-  font-weight: bold;
-  width: 100%;
   text-align: center;
+  flex-grow: 2;
+  span {
+    font-size: 4.4em;
+    font-weight: bold;
+  }
 `;
 
 const Details = ({
@@ -43,9 +49,13 @@ const Details = ({
 }) => {
   return (
     <HeaderDetails appWidth={appWidth}>
-      <Description>{description}</Description>
-      <MinMax>{`${temp_max} / ${temp_min}`}</MinMax>
-      <Temperature>{temp}</Temperature>
+      <DetailsTop>
+        <Description>{description}</Description>
+        <MinMax>{`${temp_max} / ${temp_min}`}</MinMax>
+      </DetailsTop>
+      <Temperature>
+        <span>{temp}</span>
+      </Temperature>
     </HeaderDetails>
   );
 };

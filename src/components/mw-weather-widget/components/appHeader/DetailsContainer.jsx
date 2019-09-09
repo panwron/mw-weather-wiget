@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import WeatherContext from "../../store/weather-context";
 import { kToC } from "../../../utils/units";
 import Details from "./Details";
-import { ratio } from "../../../utils/sizing";
 
 const WigetHeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  width: 33%;
 `;
 
 const DetailsConatiner = ({ appWidth }) => {
