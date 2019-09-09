@@ -1,10 +1,24 @@
 import React from "react";
-import WeatherContext from "../../store/weather-context";
+import styled from "styled-components";
+import Details from "./Details";
+import DateLocation from "./DateLocation";
+import Icon from "./Icon";
+
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.5em;
+`;
 
 const AppHeader = () => {
-  const data = React.useContext(WeatherContext);
-  console.log("header data", data);
-  return <div>Header</div>;
+  return (
+    <Header>
+      <Icon />
+      <Details />
+      <DateLocation />
+    </Header>
+  );
 };
 
 export default AppHeader;
