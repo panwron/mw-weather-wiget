@@ -1,3 +1,61 @@
+###MW weather widget coding Challenge
+
+[DEMO] https://mw-weather-wiget.mwlab1.now.sh/
+
+---
+
+Challenge seemed easy at first glance but as quickly turned out, quite tricky. Still enjoyable. It took me 6 hours not counting brakes and last 3 in a bit rush. After 4 hours I didn't have anything worth sending. Even though challenge outline was mostly clear I found some points a bit confusing. I've sent email with questions, but it looks like it gets lost in the battle, or maybe it was part of the challenge.
+
+---
+
+##### Project
+
+My plan for the weather widget was to build self-contained react library to be share via npm. Started with create-react-app to quickly scaffold app, and… ended app with it.
+
+---
+
+##### Final app
+
+Final app is self-contained react component that adapts to every container. It’s responsive relative to container size not window size and works even on smallest screens [smallest screens](https://mlabpics.s3.eu-central-1.amazonaws.com/20190909_223025.jpg).
+Thinking about building library I wanted to limit dependencies and decided to use styled-components to avoid style conflicts with parent app and dealing with bundling css files.
+I think using styled components was a good choice, it would be really hard to achieve container-based responsiveness with regular css or css modules. One of sc drawback is it’s really easy to bloat components structure due it’s composition. Some time and planning is needed to keep it clean. For state management I used react context API.
+
+---
+
+#### Dependencies
+
+- Styled components
+- PropTypes react Typechecking
+- date-fns – modular date utility
+- react as peer dependency
+
+---
+
+#### Features
+
+- Full responsiveness based on parent container
+- It scrolls to current hour on init
+- Clicking on certain hour display its weather details on the top
+
+---
+
+#### Tricky parts
+
+- Responsiveness
+- Hiding slider scrollbar for every size
+- Handling window resize and adjusting elements accordingly with react refs
+
+---
+
+##### Bugs
+
+- really strange one. Some components throw "Date is not a constructor" when calling new Date(). Didn’t have time to debug and just moved declarations to other components
+- openweathermap same origin policy forces using proxy. Again, because of lack of time I’ve used cors-anywhere but time to time requests get blocked.
+
+---
+
+To run locally clone and follow:
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -24,45 +82,3 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
